@@ -1,69 +1,40 @@
 package ru.cronfire.tcpchat.client.gui;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import ru.cronfire.tcpchat.client.Client;
+import ru.cronfire.tcpchat.client.Main;
+import ru.cronfire.tcpchat.client.implementations.ChatClient;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ChatController implements Initializable {
+public class ChatController implements Initializable{
 
-    @FXML private Pane mainPane;
-    @FXML private FlowPane chatPane;
-    @FXML private FlowPane usersPane;
+    private static ChatClient chatClient = null;
+
+    @FXML private TextArea chatArea;
     @FXML private TextField messageField;
-    @FXML private Label serverIP;
-    @FXML private Label serverStatus;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Main.getStage().setOnCloseRequest((event) -> {if(chatClient != null) chatClient.close();});
+    }
 
+    public static void setChatClient(final ChatClient chatClient) {
+        ChatController.chatClient = chatClient;
     }
 
     @FXML
     private void sendMessage() {
-        final String message = messageField.getText();
-
-        if(message.startsWith("/")) {
-            handleCommand(message.substring(1,message.length()));
-
-            return;
-        }
+        chatClient.send(messageField.getText());
         messageField.setText("");
     }
 
-    private void handleCommand(final String command) {
-        if(command.equals("disconnect")) {
-            //disconnect
-            Client.showLoginScene();
-        }
-        messageField.setText("");
+    public void addMessage(final String message) {
+        Platform.runLater(() -> chatArea.setText(chatArea.getText() + message + "\n"));
     }
 
-    private void clearChat() {
-        chatPane.getChildren().removeAll();
-    }
-
-    private void addMessage(final String message, final String color) {
-        Label l = new Label(message);
-        l.setPrefWidth(chatPane.getWidth());
-        l.setFont(Font.font("Arial"));
-        l.getStyleClass().add("message");
-        chatPane.getChildren().add(l);
-    }
-
-    private void addUser(final String nickname) {
-        Label l = new Label(nickname);
-        l.setFont(Font.font("Arial"));
-        l.setMinWidth(usersPane.getWidth());
-        l.setPrefWidth(usersPane.getWidth());
-        l.getStyleClass().add("username");
-        usersPane.getChildren().add(l);
-    }
 }

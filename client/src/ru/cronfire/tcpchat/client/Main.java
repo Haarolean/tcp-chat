@@ -10,18 +10,19 @@ import ru.cronfire.tcpchat.client.gui.ChatController;
 import ru.cronfire.tcpchat.client.gui.LoginController;
 import ru.cronfire.tcpchat.client.resources.Resources;
 
-public class Client extends Application {
+public class Main extends Application {
 
     private static Scene loginScene;
     private static Scene chatScene;
 
     private static Stage stage;
-    private static ChatController controller;
+    private static LoginController loginController;
+    private static ChatController chatController;
     private static final String version = "0.0.1";
 
     @Override
     public void start(Stage stage) throws Exception {
-        Client.stage = stage;
+        Main.stage = stage;
         FXMLLoader loader = new FXMLLoader(Resources.getResource("./fxml/login.fxml"));
         Parent root = loader.load();
         loginScene = new Scene(root);
@@ -37,11 +38,13 @@ public class Client extends Application {
 
         stage.show();
 
-        ((LoginController) loader.getController()).start();
+        loginController =  loader.getController();
+        loginController.start();
 
         loader = new FXMLLoader(Resources.getResource("./fxml/chat.fxml"));
         root = loader.load();
         chatScene = new Scene(root);
+        chatController = loader.getController();
     }
 
     public static void main(String[] args) {
@@ -54,6 +57,18 @@ public class Client extends Application {
 
     public static void showChatScene() {
         stage.setScene(chatScene);
+    }
+
+    public static Stage getStage() {
+        return Main.stage;
+    }
+
+    public static LoginController getLoginController() {
+        return loginController;
+    }
+
+    public static ChatController getChatController() {
+        return chatController;
     }
 
 }

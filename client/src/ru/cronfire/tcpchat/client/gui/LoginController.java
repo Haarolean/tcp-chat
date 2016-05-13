@@ -10,24 +10,20 @@ package ru.cronfire.tcpchat.client.gui;
  */
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import ru.cronfire.tcpchat.client.Client;
+import ru.cronfire.tcpchat.client.Main;
+import ru.cronfire.tcpchat.client.Utils;
+import ru.cronfire.tcpchat.client.implementations.ChatClient;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 
-public class LoginController implements Initializable {
+public class LoginController {
+
+    private static final int DEFAULT_PORT = 666; // Sorry DOOM
 
     @FXML private TextField serverField;
-    @FXML private TextField nicknameField;
     @FXML private Button connectButton;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 
     public void start() {
         connectButton.requestFocus();
@@ -35,10 +31,18 @@ public class LoginController implements Initializable {
 
     @FXML
     private void connect() {
-        Client.showChatScene();
+        try {
+            String ip = serverField.getText();
+            final int port = ip.contains(":") ? Integer.parseInt(ip.split(":")[1]) : DEFAULT_PORT;
+            ip = ip.contains(":") ? ip.split(":")[0] : ip;
+            ChatController.setChatClient(new ChatClient(ip, port));
+            Main.showChatScene();
+        } catch(IOException e) {
+            Utils.showAlertWindow("Ошибка подключения",
+                    "Подключение не удалось: " + e.getClass().getName() + ": " + e.getMessage());
+        } catch(Exception e) {
+            Utils.showExceptionDialog(e);
+        }
     }
-
-
-
 
 }

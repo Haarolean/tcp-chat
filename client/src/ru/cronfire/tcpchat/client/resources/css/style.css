@@ -41,3 +41,7 @@
 .red {
     -fx-text-fill: red;
 }
+.text-area {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}

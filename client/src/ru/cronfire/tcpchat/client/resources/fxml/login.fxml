@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 
-<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="main-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.cronfire.tcpchat.client.gui.LoginController">
-   <children>
-      <TextField fx:id="serverField" layoutX="225.0" layoutY="170.0" prefWidth="150.0" promptText="Server" />
-      <TextField fx:id="nicknameField" layoutX="225.0" layoutY="206.0" prefWidth="150.0" promptText="Nickname" />
-      <Button fx:id="connectButton" layoutX="270.0" layoutY="241.0" mnemonicParsing="false" onAction="#connect" text="Connect">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="main-pane" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.cronfire.tcpchat.client.gui.LoginController">
+      <TextField fx:id="serverField" layoutX="225.0" layoutY="170.0" prefWidth="150.0" promptText="server[:port]" />
+      <Button fx:id="connectButton" layoutX="270.0" layoutY="210.0" mnemonicParsing="false" onAction="#connect" text="Connect">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
       </Button>
-   </children>
 </Pane>
