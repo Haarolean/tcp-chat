@@ -5,42 +5,10 @@
     -fx-background-size: stretch;
 }
 
-.pane {
-    /*-fx-border-radius: 1;
-    -fx-border-color: black;*/
-}
-
-.userspane {
-    -fx-border-color: #039ED3 #039ED3 transparent #039ED3;
-}
-
-.username {
-    -fx-padding: 2 0 0 5;
-}
-
-.message-field {
-    /*-fx-text-box-border: transparent;*/
-}
-
 .message-field:focused {
-    /*-fx-focus-color: transparent;*/
     -fx-faint-focus-color: transparent;
 }
 
-.message {
-    -fx-padding: 5 10 0 10;
-}
-
-.connection-status-connected {
-    -fx-text-fill: green;
-}
-
-.connection-status-disconnected {
-    -fx-text-fill: red;
-}
-.red {
-    -fx-text-fill: red;
-}
 .text-area {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
