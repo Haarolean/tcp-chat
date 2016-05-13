@@ -18,7 +18,7 @@ public class Main extends Application {
     private static Stage stage;
     private static LoginController loginController;
     private static ChatController chatController;
-    private static final String version = "0.0.1";
+    private static final String VERSION = "1.0.0";
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -30,7 +30,7 @@ public class Main extends Application {
 
         stage.setScene(loginScene);
 
-        stage.setTitle("Chat v. " + version);
+        stage.setTitle("Chat v. " + VERSION);
         stage.getIcons().add(new Image(Resources.getResourceAsStream("images/chat.png")));
 
         stage.setResizable(false);
