@@ -21,7 +21,7 @@ public class Server {
     public static final List<ClientThread> clientThreads = new ArrayList<>();
     private static final int DEFAULT_PORT = 666; // Sorry DOOM
     private static boolean SERVER_IS_RUNNING = true;
-    private static final String VERSION = "1.0.0";
+    private static final String VERSION = "1.0.1";
 
     public static void main(String args[]) {
 

@@ -18,12 +18,12 @@ public class Main extends Application {
     private static Stage stage;
     private static LoginController loginController;
     private static ChatController chatController;
-    private static final String VERSION = "1.0.0";
+    private static final String VERSION = "1.0.1";
 
     @Override
     public void start(Stage stage) throws Exception {
         Main.stage = stage;
-        FXMLLoader loader = new FXMLLoader(Resources.getResource("./fxml/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(Resources.getResource("fxml/login.fxml"));
         Parent root = loader.load();
         loginScene = new Scene(root);
 
@@ -41,7 +41,7 @@ public class Main extends Application {
         loginController =  loader.getController();
         loginController.start();
 
-        loader = new FXMLLoader(Resources.getResource("./fxml/chat.fxml"));
+        loader = new FXMLLoader(Resources.getResource("fxml/chat.fxml"));
         root = loader.load();
         chatScene = new Scene(root);
         chatController = loader.getController();
